@@ -1,0 +1,42 @@
+[project]
+name = "chesscv"
+version = "0.1.0"
+description = "Async USB chessboard vision using OpenAI Structured Outputs"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=2.53.0,<3",
+    "opencv-python-headless>=5.0.0,<6",
+    "orjson>=3.11.9,<4",
+    "pydantic>=2.13.4,<3",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.0",
+    "pytest-asyncio>=1.4.0",
+    "pyright>=1.1.407",
+    "ruff>=0.14.0",
+]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["ASYNC", "B", "E", "F", "I", "RUF", "UP"]
+ignore = ["E501"]
+
+[tool.pyright]
+include = ["src"]
+pythonVersion = "3.11"
+typeCheckingMode = "standard"
